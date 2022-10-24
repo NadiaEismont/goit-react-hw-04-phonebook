@@ -3,7 +3,11 @@ import { nanoid } from 'nanoid';
 import SignUpForm from './Form/Form';
 import Contacts from './Contacts/Contacts';
 import Filter from './Filter/Filter';
-
+import {
+  NotificationContainer,
+  NotificationManager,
+} from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 export class App extends Component {
   state = {
     contacts: [
@@ -18,6 +22,9 @@ export class App extends Component {
   };
 
   onContactCreate = ({ name, number }) => {
+    if (this.state.contacts.some(contact => contact.name === name)) {
+      return NotificationManager.warning(`${name} is already in contacts`);
+    }
     this.setState(prevState => ({
       ...prevState,
       contacts: [...prevState.contacts, { id: nanoid(), name, number }],
@@ -58,6 +65,8 @@ export class App extends Component {
           onDelete={this.onContactDelete}
         ></Contacts>
         <Filter value={filter} onChange={this.changeFilter} />
+
+        <NotificationContainer />
       </div>
     );
   }
