@@ -33,7 +33,7 @@ export class App extends Component {
   onContactDelete = id => {
     this.setState(prevState => ({
       ...prevState,
-      contacts: prevState.contacts.filter(contact => contact.id != id),
+      contacts: prevState.contacts.filter(contact => contact.id !== id),
     }));
   };
   changeFilter = e => {
