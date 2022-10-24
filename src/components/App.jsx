@@ -8,6 +8,7 @@ import {
   NotificationManager,
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import Section from './Section/Section';
 export class App extends Component {
   state = {
     contacts: [
@@ -57,15 +58,19 @@ export class App extends Component {
           alignItems: 'center',
           fontSize: 40,
           color: '#010101',
+          flexDirection: 'column',
         }}
       >
-        <SignUpForm onSubmit={this.onContactCreate} />
-        <Contacts
-          listOfContacts={this.getVisibleContacts()}
-          onDelete={this.onContactDelete}
-        ></Contacts>
-        <Filter value={filter} onChange={this.changeFilter} />
-
+        <Section title="Phonebook">
+          <SignUpForm onSubmit={this.onContactCreate} />
+        </Section>
+        <Section title="Contacts">
+          <Filter value={filter} onChange={this.changeFilter} />
+          <Contacts
+            listOfContacts={this.getVisibleContacts()}
+            onDelete={this.onContactDelete}
+          ></Contacts>
+        </Section>
         <NotificationContainer />
       </div>
     );

@@ -1,15 +1,15 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-// import { ChangeColor, MainButton } from './FeedbackOptions.styled';
+import { ButtonDelete, LabelList, LabelListNumber } from './Contacts.styled';
 const Contacts = ({ listOfContacts, onDelete }) => (
   <div>
     <ul>
       {listOfContacts.map(contact => (
         <li key={contact.id}>
-          <label type="text" name="name">
-            {contact.name}
-          </label>
-          <label
+          <LabelList type="text" name="name">
+            {contact.name} :
+          </LabelList>
+          <LabelListNumber
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -17,14 +17,14 @@ const Contacts = ({ listOfContacts, onDelete }) => (
             required
           >
             {contact.number}
-          </label>
-          <button
+          </LabelListNumber>
+          <ButtonDelete
             type="button"
             key={contact.id}
             onClick={() => onDelete(contact.id)}
           >
             Delete
-          </button>
+          </ButtonDelete>
         </li>
       ))}
     </ul>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
+import { TagForm, TagInput, ButtonSubmit, LabelForm } from './Form.styled';
 class SignUpForm extends Component {
   state = {
     name: '',
@@ -16,17 +17,20 @@ class SignUpForm extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" name="name" />
-        <input
+      <TagForm onSubmit={this.handleSubmit}>
+        <LabelForm htmlFor="name">Name</LabelForm>
+        <TagInput type="text" name="name" placeholder="Your name" />
+        <LabelForm htmlFor="number">Number</LabelForm>
+        <TagInput
           type="tel"
           name="number"
+          placeholder="Your phone number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-        <button type="submit">Add contact</button>
-      </form>
+        <ButtonSubmit type="submit">Add contact</ButtonSubmit>
+      </TagForm>
     );
   }
 }
