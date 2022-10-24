@@ -17,7 +17,7 @@ export class App extends Component {
     number: '',
   };
 
-  onContactCreate = (name, number) => {
+  onContactCreate = ({ name, number }) => {
     this.setState(prevState => ({
       ...prevState,
       contacts: [...prevState.contacts, { id: nanoid(), name, number }],
@@ -32,10 +32,13 @@ export class App extends Component {
   changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
-  normalizedFilter = this.state.filter.toLowerCase();
-  visibleContacts = this.state.contacts.filter(contact =>
-    contact.name.toLowerCase().includes(this.normalizedFilter)
-  );
+  getVisibleContacts = () => {
+    const normalizedFilter = this.state.filter.toLowerCase();
+    const visibleContacts = this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
+    return visibleContacts;
+  };
   render() {
     const { filter } = this.state;
     return (
@@ -51,7 +54,7 @@ export class App extends Component {
       >
         <SignUpForm onSubmit={this.onContactCreate} />
         <Contacts
-          listOfContacts={this.visibleContacts}
+          listOfContacts={this.getVisibleContacts()}
           onDelete={this.onContactDelete}
         ></Contacts>
         <Filter value={filter} onChange={this.changeFilter} />

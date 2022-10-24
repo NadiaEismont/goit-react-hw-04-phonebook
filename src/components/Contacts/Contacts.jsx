@@ -16,7 +16,7 @@ const Contacts = ({ listOfContacts, onDelete }) => (
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           >
-            {}
+            {contact.number}
           </label>
           <button
             type="button"
