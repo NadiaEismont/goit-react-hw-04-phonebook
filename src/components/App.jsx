@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import SignUpForm from './Form/Form';
-import Contacts from './Contacts/Contacts';
+import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import {
   NotificationContainer,
@@ -9,6 +9,7 @@ import {
 } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import Section from './Section/Section';
+import { Container } from './Container/Container.styled';
 export class App extends Component {
   state = {
     contacts: [
@@ -50,29 +51,19 @@ export class App extends Component {
   render() {
     const { filter } = this.state;
     return (
-      <div
-        style={{
-          height: '100vh',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          fontSize: 40,
-          color: '#010101',
-          flexDirection: 'column',
-        }}
-      >
+      <Container>
         <Section title="Phonebook">
-          <SignUpForm onSubmit={this.onContactCreate} />
+          <ContactForm onSubmit={this.onContactCreate} />
         </Section>
         <Section title="Contacts">
           <Filter value={filter} onChange={this.changeFilter} />
-          <Contacts
+          <ContactList
             listOfContacts={this.getVisibleContacts()}
             onDelete={this.onContactDelete}
-          ></Contacts>
+          ></ContactList>
         </Section>
         <NotificationContainer />
-      </div>
+      </Container>
     );
   }
 }

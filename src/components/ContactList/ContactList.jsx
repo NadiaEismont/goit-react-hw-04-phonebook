@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { ButtonDelete, LabelList, LabelListNumber } from './Contacts.styled';
-const Contacts = ({ listOfContacts, onDelete }) => (
+import { ButtonDelete, LabelList, LabelListNumber } from './ContactList.styled';
+const ContactList = ({ listOfContacts, onDelete }) => (
   <div>
     <ul>
       {listOfContacts.map(contact => (
@@ -31,8 +31,8 @@ const Contacts = ({ listOfContacts, onDelete }) => (
   </div>
 );
 
-Contacts.propTypes = {
+ContactList.propTypes = {
   listOfContacts: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDelete: PropTypes.func.isRequired,
 };
-export default Contacts;
+export default ContactList;

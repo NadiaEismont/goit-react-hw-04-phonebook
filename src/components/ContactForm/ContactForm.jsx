@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { TagForm, TagInput, ButtonSubmit, LabelForm } from './Form.styled';
-class SignUpForm extends Component {
+import {
+  TagForm,
+  TagInput,
+  ButtonSubmit,
+  LabelForm,
+} from './ContactForm.styled';
+class ContactForm extends Component {
   state = {
     name: '',
     number: '',
@@ -35,7 +40,7 @@ class SignUpForm extends Component {
   }
 }
 
-SignUpForm.propTypes = {
+ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
-export default SignUpForm;
+export default ContactForm;
