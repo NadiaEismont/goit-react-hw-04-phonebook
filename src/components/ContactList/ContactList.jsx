@@ -1,10 +1,10 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { ButtonDelete, LabelList, LabelListNumber } from './ContactList.styled';
-const ContactList = ({ listOfContacts, onDelete }) => (
+const ContactList = ({ contacts, onDelete }) => (
   <div>
     <ul>
-      {listOfContacts.map(contact => (
+      {contacts.map(contact => (
         <li key={contact.id}>
           <LabelList type="text" name="name">
             {contact.name} :
@@ -32,7 +32,7 @@ const ContactList = ({ listOfContacts, onDelete }) => (
 );
 
 ContactList.propTypes = {
-  listOfContacts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 export default ContactList;

@@ -10,6 +10,7 @@ import {
 import 'react-notifications/lib/notifications.css';
 import Section from './Section/Section';
 import { Container } from './Container/Container.styled';
+import { setContacts, parseContacts } from '../utils/localstarge';
 export class App extends Component {
   state = {
     contacts: [
@@ -20,13 +21,13 @@ export class App extends Component {
     ],
     filter: '',
   };
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      setContacts(this.state.contacts);
     }
   }
   componentDidMount() {
-    const savedContacts = JSON.parse(localStorage.getItem('contacts'));
+    const savedContacts = parseContacts();
     if (savedContacts) {
       this.setState({ contacts: savedContacts });
     }
@@ -67,9 +68,9 @@ export class App extends Component {
         <Section title="Contacts">
           <Filter value={filter} onChange={this.changeFilter} />
           <ContactList
-            listOfContacts={this.getVisibleContacts()}
+            contacts={this.getVisibleContacts()}
             onDelete={this.onContactDelete}
-          ></ContactList>
+          />
         </Section>
         <NotificationContainer />
       </Container>
