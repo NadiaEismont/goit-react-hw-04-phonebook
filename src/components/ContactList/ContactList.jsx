@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { ButtonDelete, LabelList, LabelListNumber } from './ContactList.styled';
+
 const ContactList = ({ contacts, onDelete }) => (
   <div>
     <ul>
